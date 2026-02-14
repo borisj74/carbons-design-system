@@ -1,0 +1,366 @@
+{
+  "meta": {
+    "name": "CarbonS Design System — Figma Component Guide",
+    "version": "1.0.0",
+    "description": "Figma-ready specifications for implementing the component library. Each entry maps to a Figma component with variants, properties, and auto-layout settings."
+  },
+
+  "figmaSetup": {
+    "fileStructure": {
+      "pages": [
+        "Cover",
+        "1. Foundations (Colors, Typography, Spacing, Icons, Shadows)",
+        "2. Components",
+        "3. Patterns & Layouts",
+        "4. Templates",
+        "5. Playground"
+      ],
+      "namingConvention": "Category / ComponentName / Variant=value, Size=value, State=value",
+      "autoLayout": "Use auto-layout for ALL components. No absolute positioning except overlays."
+    },
+    "styles": {
+      "colors": "Create color styles for all semantic aliases (Light + Dark mode collections)",
+      "typography": "Create text styles for all 9 scale levels + utility styles",
+      "effects": "Create effect styles for all shadow levels",
+      "grids": "8px grid with 4px sub-grid"
+    },
+    "variables": {
+      "collections": ["Primitives", "Light Mode", "Dark Mode", "Spacing", "Border Radius"],
+      "modes": ["Light", "Dark"],
+      "scoping": "Scope color variables to appropriate properties (fill, stroke, text)"
+    }
+  },
+
+  "components": [
+    {
+      "name": "Button",
+      "figmaPath": "Components / Button",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Primary", "Secondary", "Tertiary", "Danger", "Ghost"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG", "XL"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Active", "Focus", "Disabled", "Loading"] },
+        "Left Icon": { "type": "boolean", "default": false },
+        "Right Icon": { "type": "boolean", "default": false },
+        "Label": { "type": "text", "default": "Button" },
+        "Full Width": { "type": "boolean", "default": false }
+      },
+      "autoLayout": { "direction": "horizontal", "gap": 8, "padding": "0 20", "align": "center" },
+      "figmaNotes": "Use boolean properties to toggle icon slots. Loading state swaps label for spinner."
+    },
+    {
+      "name": "Icon Button",
+      "figmaPath": "Components / Icon Button",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Primary", "Secondary", "Ghost", "Danger"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Active", "Focus", "Disabled"] },
+        "Icon": { "type": "instance-swap", "default": "Icon/Plus" }
+      },
+      "autoLayout": { "direction": "horizontal", "padding": "equal", "align": "center" }
+    },
+    {
+      "name": "Input",
+      "figmaPath": "Components / Input",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Outlined", "Filled"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Focus", "Filled", "Error", "Success", "Disabled", "ReadOnly"] },
+        "Label": { "type": "text", "default": "Label" },
+        "Placeholder": { "type": "text", "default": "Placeholder" },
+        "Helper Text": { "type": "text", "default": "" },
+        "Leading Icon": { "type": "boolean", "default": false },
+        "Trailing Icon": { "type": "boolean", "default": false },
+        "Required": { "type": "boolean", "default": false }
+      },
+      "autoLayout": { "direction": "vertical", "gap": 6, "padding": "0" }
+    },
+    {
+      "name": "Textarea",
+      "figmaPath": "Components / Textarea",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Focus", "Error", "Disabled"] },
+        "Label": { "type": "text", "default": "Label" },
+        "Show Count": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "Select",
+      "figmaPath": "Components / Select",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Open", "Error", "Disabled"] },
+        "Multi": { "type": "boolean", "default": false },
+        "Searchable": { "type": "boolean", "default": false }
+      },
+      "figmaNotes": "Dropdown panel is a separate component overlaid in prototyping."
+    },
+    {
+      "name": "Checkbox",
+      "figmaPath": "Components / Checkbox",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Unchecked", "Checked", "Indeterminate"] },
+        "Interaction": { "type": "variant", "values": ["Default", "Hover", "Focus", "Disabled"] },
+        "Label": { "type": "text", "default": "Checkbox label" }
+      },
+      "autoLayout": { "direction": "horizontal", "gap": 8, "align": "center" }
+    },
+    {
+      "name": "Radio Group",
+      "figmaPath": "Components / Radio Group",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "Orientation": { "type": "variant", "values": ["Vertical", "Horizontal"] }
+      },
+      "subComponents": {
+        "Radio Item": {
+          "State": ["Unselected", "Selected"],
+          "Interaction": ["Default", "Hover", "Focus", "Disabled"],
+          "Label": { "type": "text" }
+        }
+      }
+    },
+    {
+      "name": "Toggle",
+      "figmaPath": "Components / Toggle",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Off", "On"] },
+        "Interaction": { "type": "variant", "values": ["Default", "Hover", "Focus", "Disabled"] },
+        "Label": { "type": "text", "default": "Toggle label" }
+      }
+    },
+    {
+      "name": "Date Picker",
+      "figmaPath": "Components / Date Picker",
+      "componentProperties": {
+        "Mode": { "type": "variant", "values": ["Single", "Range"] },
+        "State": { "type": "variant", "values": ["Default", "Open", "Filled", "Error"] }
+      }
+    },
+    {
+      "name": "Slider",
+      "figmaPath": "Components / Slider",
+      "componentProperties": {
+        "Mode": { "type": "variant", "values": ["Single", "Range"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "Show Tooltip": { "type": "boolean", "default": true }
+      }
+    },
+    {
+      "name": "Avatar",
+      "figmaPath": "Components / Avatar",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["XS", "SM", "MD", "LG", "XL", "2XL"] },
+        "Type": { "type": "variant", "values": ["Image", "Initials", "Icon"] },
+        "Status": { "type": "variant", "values": ["None", "Online", "Offline", "Busy", "Away"] },
+        "Shape": { "type": "variant", "values": ["Circle", "Rounded"] }
+      }
+    },
+    {
+      "name": "Avatar Group",
+      "figmaPath": "Components / Avatar Group",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "Count": { "type": "variant", "values": ["2", "3", "4", "5", "Overflow"] }
+      }
+    },
+    {
+      "name": "Badge",
+      "figmaPath": "Components / Badge",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Solid", "Soft", "Outline"] },
+        "Color": { "type": "variant", "values": ["Default", "Brand", "Success", "Warning", "Error", "Info"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "Dot Only": { "type": "boolean", "default": false },
+        "Removable": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "Tag",
+      "figmaPath": "Components / Tag",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Solid", "Soft", "Outline"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Active", "Selected", "Disabled"] },
+        "Leading Icon": { "type": "boolean", "default": false },
+        "Dismissible": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "Card",
+      "figmaPath": "Components / Card",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Elevated", "Outlined", "Filled", "Ghost"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "State": { "type": "variant", "values": ["Default", "Hover", "Active", "Selected"] },
+        "Header": { "type": "boolean", "default": true },
+        "Footer": { "type": "boolean", "default": false },
+        "Media": { "type": "boolean", "default": false }
+      },
+      "autoLayout": { "direction": "vertical", "gap": 16, "padding": 24 },
+      "figmaNotes": "Card body uses slot pattern — content can be swapped via instance."
+    },
+    {
+      "name": "Table",
+      "figmaPath": "Components / Table",
+      "subComponents": {
+        "Table Header Cell": {
+          "Sortable": { "type": "boolean" },
+          "Sort State": ["None", "Ascending", "Descending"]
+        },
+        "Table Row": {
+          "Density": ["Compact", "Default", "Comfortable"],
+          "State": ["Default", "Hover", "Selected", "Expanded"]
+        },
+        "Table Cell": {
+          "Type": ["Text", "Number", "Badge", "Avatar", "Action"]
+        }
+      }
+    },
+    {
+      "name": "Tabs",
+      "figmaPath": "Components / Tabs",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Underline", "Pills", "Enclosed"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] }
+      },
+      "subComponents": {
+        "Tab Item": {
+          "State": ["Default", "Hover", "Active", "Disabled"],
+          "Icon": { "type": "boolean", "default": false },
+          "Badge": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    {
+      "name": "Breadcrumb",
+      "figmaPath": "Components / Breadcrumb",
+      "componentProperties": {
+        "Items": { "type": "variant", "values": ["2", "3", "4", "Collapsed"] },
+        "Separator": { "type": "variant", "values": ["Slash", "Chevron"] }
+      }
+    },
+    {
+      "name": "Sidebar",
+      "figmaPath": "Components / Sidebar",
+      "componentProperties": {
+        "State": { "type": "variant", "values": ["Expanded", "Collapsed"] },
+        "Theme": { "type": "variant", "values": ["Light", "Dark"] }
+      },
+      "subComponents": {
+        "Nav Item": {
+          "State": ["Default", "Hover", "Active"],
+          "Icon": { "type": "instance-swap" },
+          "Badge": { "type": "boolean" },
+          "Has Children": { "type": "boolean" }
+        },
+        "Nav Section": {
+          "Label": { "type": "text" }
+        }
+      }
+    },
+    {
+      "name": "Topbar",
+      "figmaPath": "Components / Topbar",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Default", "With Breadcrumb", "With Search"] }
+      }
+    },
+    {
+      "name": "Modal",
+      "figmaPath": "Components / Modal",
+      "componentProperties": {
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG", "XL", "Full"] },
+        "Has Footer": { "type": "boolean", "default": true },
+        "Has Close": { "type": "boolean", "default": true }
+      },
+      "figmaNotes": "Body area uses a scrollable frame. Backdrop is a separate fill layer."
+    },
+    {
+      "name": "Drawer",
+      "figmaPath": "Components / Drawer",
+      "componentProperties": {
+        "Position": { "type": "variant", "values": ["Left", "Right", "Top", "Bottom"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG", "XL"] }
+      }
+    },
+    {
+      "name": "Toast",
+      "figmaPath": "Components / Toast",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Info", "Success", "Warning", "Error"] },
+        "Has Action": { "type": "boolean", "default": false },
+        "Has Close": { "type": "boolean", "default": true },
+        "Title": { "type": "text", "default": "Notification title" },
+        "Description": { "type": "text", "default": "Notification description text." }
+      }
+    },
+    {
+      "name": "Tooltip",
+      "figmaPath": "Components / Tooltip",
+      "componentProperties": {
+        "Placement": { "type": "variant", "values": ["Top", "Right", "Bottom", "Left"] },
+        "Has Arrow": { "type": "boolean", "default": true }
+      }
+    },
+    {
+      "name": "Popover",
+      "figmaPath": "Components / Popover",
+      "componentProperties": {
+        "Placement": { "type": "variant", "values": ["Top", "Right", "Bottom", "Left"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] }
+      }
+    },
+    {
+      "name": "Progress Bar",
+      "figmaPath": "Components / Progress Bar",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Determinate", "Indeterminate"] },
+        "Size": { "type": "variant", "values": ["SM", "MD", "LG"] },
+        "Color": { "type": "variant", "values": ["Brand", "Success", "Error"] },
+        "Show Label": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "Skeleton",
+      "figmaPath": "Components / Skeleton",
+      "componentProperties": {
+        "Variant": { "type": "variant", "values": ["Text", "Circle", "Rect", "Card"] },
+        "Lines": { "type": "variant", "values": ["1", "2", "3", "4"] }
+      }
+    },
+    {
+      "name": "Empty State",
+      "figmaPath": "Components / Empty State",
+      "componentProperties": {
+        "Has Illustration": { "type": "boolean", "default": true },
+        "Has Primary Action": { "type": "boolean", "default": true },
+        "Has Secondary Action": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "Divider",
+      "figmaPath": "Components / Divider",
+      "componentProperties": {
+        "Orientation": { "type": "variant", "values": ["Horizontal", "Vertical"] },
+        "Has Label": { "type": "boolean", "default": false }
+      }
+    },
+    {
+      "name": "KPI Card",
+      "figmaPath": "Components / KPI Card",
+      "componentProperties": {
+        "State": { "type": "variant", "values": ["Default", "Loading"] },
+        "Trend": { "type": "variant", "values": ["Up", "Down", "Neutral", "None"] },
+        "Has Sparkline": { "type": "boolean", "default": false },
+        "Label": { "type": "text", "default": "Total Revenue" },
+        "Value": { "type": "text", "default": "$48,290" },
+        "Change": { "type": "text", "default": "+12.5%" }
+      },
+      "autoLayout": { "direction": "vertical", "gap": 12, "padding": 24 },
+      "figmaNotes": "Signature CarbonS component. Use data typography for value. Overline for label."
+    }
+  ]
+}

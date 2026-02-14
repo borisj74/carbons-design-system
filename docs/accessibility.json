@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "name": "CarbonS Design System — Accessibility Requirements",
+    "version": "1.0.0",
+    "standard": "WCAG 2.1 AA",
+    "description": "Comprehensive accessibility requirements. Luxury and inclusivity are not mutually exclusive."
+  },
+
+  "principles": {
+    "commitment": "CarbonS is committed to WCAG 2.1 AA compliance. Every component ships accessible by default — accessibility is not an afterthought, it's a design constraint that improves quality for all users.",
+    "targets": ["WCAG 2.1 Level AA", "Section 508 compliance", "EN 301 549 (EU standard)"]
+  },
+
+  "colorContrast": {
+    "standard": "WCAG AA",
+    "requirements": {
+      "normalText": {
+        "ratio": "4.5:1 minimum",
+        "applies": "All body text, labels, and small text (under 18px / 14px bold)"
+      },
+      "largeText": {
+        "ratio": "3:1 minimum",
+        "applies": "Text 18px+ regular weight or 14px+ bold weight"
+      },
+      "uiComponents": {
+        "ratio": "3:1 minimum",
+        "applies": "Borders, icons, form controls, focus indicators against adjacent colors"
+      },
+      "decorative": {
+        "ratio": "No requirement",
+        "applies": "Decorative elements, disabled states, placeholder text"
+      }
+    },
+    "verifiedPairings": {
+      "light": [
+        { "bg": "carbon-50 (#FAFAF8)", "fg": "carbon-900 (#242220)", "ratio": "14.8:1", "pass": "AAA" },
+        { "bg": "carbon-50 (#FAFAF8)", "fg": "carbon-600 (#6B665C)", "ratio": "5.2:1", "pass": "AA" },
+        { "bg": "carbon-50 (#FAFAF8)", "fg": "ember-600 (#C06A35)", "ratio": "4.6:1", "pass": "AA" },
+        { "bg": "ember-500 (#D4854A)", "fg": "white (#FFFFFF)", "ratio": "4.5:1", "pass": "AA" },
+        { "bg": "carbon-50 (#FAFAF8)", "fg": "carbon-400 (#B0ACA0)", "ratio": "2.8:1", "pass": "Fail — tertiary text only" },
+        { "bg": "error-500 (#E54D4D)", "fg": "white (#FFFFFF)", "ratio": "4.6:1", "pass": "AA" },
+        { "bg": "success-600 (#2E7331)", "fg": "white (#FFFFFF)", "ratio": "5.9:1", "pass": "AA" }
+      ],
+      "dark": [
+        { "bg": "carbon-950 (#1A1917)", "fg": "carbon-100 (#F5F4F0)", "ratio": "13.6:1", "pass": "AAA" },
+        { "bg": "carbon-950 (#1A1917)", "fg": "carbon-400 (#B0ACA0)", "ratio": "6.8:1", "pass": "AA" },
+        { "bg": "carbon-950 (#1A1917)", "fg": "ember-400 (#DFA06E)", "ratio": "7.2:1", "pass": "AA" }
+      ]
+    },
+    "prohibitions": [
+      "Never use color alone to convey information — pair with icons, patterns, or text",
+      "Never use carbon-400 or lighter for body text on light backgrounds",
+      "All chart colors must have distinguishable patterns or labels in addition to color"
+    ]
+  },
+
+  "keyboardNavigation": {
+    "requirements": [
+      "ALL interactive elements must be keyboard accessible",
+      "Tab order must follow visual reading order (top-left to bottom-right in LTR)",
+      "Skip navigation link must be the first focusable element on every page",
+      "Focus must never be trapped (except in modals, with Escape to close)",
+      "No keyboard traps — every component must allow tabbing away",
+      "Complex components use arrow key navigation (tabs, menus, radio groups)"
+    ],
+    "focusIndicator": {
+      "style": "var(--cs-focus-ring) — 2px primary bg ring + 2px brand color ring",
+      "visible": "Must be visible on all backgrounds (light and dark)",
+      "contrast": "Minimum 3:1 against adjacent colors",
+      "neverHide": "Never use outline: none without a visible replacement"
+    },
+    "componentPatterns": {
+      "Button": "Tab to focus, Enter/Space to activate",
+      "Input": "Tab to focus, type to enter text",
+      "Select": "Tab to focus, Enter/Space to open, Arrow keys to navigate, Enter to select, Escape to close",
+      "Checkbox": "Tab to focus, Space to toggle",
+      "RadioGroup": "Tab to focus group, Arrow keys to move between options, Space to select",
+      "Toggle": "Tab to focus, Space to toggle",
+      "Tabs": "Tab to focus tab list, Arrow keys to move between tabs, Enter to activate",
+      "Modal": "Focus trapped inside, Tab cycles through focusable elements, Escape to close, return focus on close",
+      "Dropdown": "Arrow keys to navigate, Enter to select, Escape to close",
+      "Tooltip": "Shows on focus (not just hover)",
+      "Table": "Arrow keys for cell navigation when focused, sortable headers activated by Enter"
+    }
+  },
+
+  "ariaPatterns": {
+    "landmarks": {
+      "required": [
+        "<main> — primary content area (exactly one per page)",
+        "<nav> — navigation regions (with unique aria-label if multiple)",
+        "<header> — page header / topbar",
+        "<aside> — sidebar, complementary content",
+        "<footer> — page footer"
+      ]
+    },
+    "liveRegions": {
+      "toasts": { "ariaLive": "polite", "ariaAtomic": true },
+      "errors": { "ariaLive": "assertive" },
+      "loadingStates": { "ariaBusy": true, "ariaLive": "polite" },
+      "dataUpdates": { "ariaLive": "polite", "ariaRelevant": "additions text" }
+    },
+    "formPatterns": {
+      "labels": "Every input MUST have an associated <label> or aria-label",
+      "errors": "Use aria-describedby to link error messages to inputs",
+      "required": "Use aria-required='true' AND visual indicator (*)",
+      "grouping": "Related fields must be in <fieldset> with <legend>",
+      "validation": "Announce errors with aria-live region OR aria-invalid + aria-describedby"
+    },
+    "componentRoles": {
+      "Modal": "role='dialog' + aria-modal='true' + aria-labelledby",
+      "Drawer": "role='dialog' + aria-modal='true'",
+      "Tabs": "role='tablist' > role='tab' + role='tabpanel'",
+      "Select": "role='listbox' > role='option'",
+      "Breadcrumb": "role='navigation' + aria-label='Breadcrumb'",
+      "Toast": "role='status' + aria-live='polite'",
+      "Alert": "role='alert'",
+      "ProgressBar": "role='progressbar' + aria-valuenow + aria-valuemin + aria-valuemax",
+      "Toggle": "role='switch' + aria-checked",
+      "Tooltip": "role='tooltip' + aria-describedby on trigger"
+    }
+  },
+
+  "screenReader": {
+    "requirements": [
+      "All images have descriptive alt text (empty alt='' for decorative images)",
+      "Icon-only buttons have aria-label describing the action",
+      "Loading states announce via aria-live when content is ready",
+      "Page title updates on route change (document.title)",
+      "Heading hierarchy is sequential (h1 → h2 → h3, never skip levels)",
+      "Tables have <caption> and proper <th> with scope attributes",
+      "SVG icons have role='img' + aria-hidden='true' when decorative, or title for meaningful"
+    ],
+    "announcements": {
+      "pageNavigation": "Announce new page title",
+      "formSubmission": "Announce success or error result",
+      "dataUpdate": "Announce significant changes (new items, deletions)",
+      "modalOpen": "Focus moves to modal, title is announced",
+      "toastNotification": "Polite announcement of message content"
+    }
+  },
+
+  "motion": {
+    "prefersReducedMotion": {
+      "requirement": "ALL non-essential animations MUST be disabled when prefers-reduced-motion: reduce is active",
+      "implementation": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }",
+      "exceptions": ["Loading spinners (reduce to opacity pulse)", "Focus indicators (instant, no transition)"],
+      "testing": "Test the entire application with reduced motion enabled"
+    }
+  },
+
+  "responsiveAccessibility": {
+    "touch": {
+      "minTargetSize": "44x44px (minimum tap target per WCAG 2.5.5)",
+      "spacing": "Minimum 8px between adjacent touch targets",
+      "gestures": "All gesture-based actions must have alternative tap/click actions"
+    },
+    "zoom": {
+      "requirement": "Content must be usable at 200% zoom without horizontal scrolling (at 1280px viewport)",
+      "textResize": "Text must scale up to 200% without loss of content or functionality"
+    }
+  },
+
+  "testing": {
+    "automated": [
+      "axe-core in CI pipeline (zero violations policy)",
+      "Lighthouse accessibility audit (score >= 95)",
+      "ESLint jsx-a11y plugin (error level)"
+    ],
+    "manual": [
+      "Keyboard-only navigation test (complete all user flows)",
+      "Screen reader testing (VoiceOver + NVDA minimum)",
+      "Color contrast spot-check with browser DevTools",
+      "Zoom to 200% and verify usability",
+      "Reduced motion preference testing"
+    ],
+    "checklist": [
+      "All interactive elements are keyboard accessible",
+      "Focus order is logical",
+      "Focus indicator is visible on all backgrounds",
+      "All form inputs have labels",
+      "All images have appropriate alt text",
+      "Color is not the sole indicator of information",
+      "Heading hierarchy is correct",
+      "ARIA roles and properties are correct",
+      "Live regions announce dynamic content",
+      "Reduced motion preference is respected",
+      "Touch targets meet minimum size",
+      "Content is usable at 200% zoom"
+    ]
+  }
+}

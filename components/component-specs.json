@@ -1,0 +1,758 @@
+{
+  "meta": {
+    "name": "CarbonS Design System — Component Specifications",
+    "version": "1.0.0",
+    "totalComponents": 30,
+    "categories": ["Foundation", "Input", "Navigation", "Feedback", "Data Display", "Layout", "Overlay"]
+  },
+
+  "components": {
+
+    "01_Button": {
+      "category": "Foundation",
+      "description": "Primary interactive element for triggering actions. Generous padding and subtle depth convey luxury.",
+      "variants": {
+        "primary": {
+          "background": "var(--cs-interactive-primary)",
+          "foreground": "var(--cs-fg-inverse)",
+          "border": "none",
+          "shadow": "var(--cs-shadow-sm)"
+        },
+        "secondary": {
+          "background": "transparent",
+          "foreground": "var(--cs-fg-primary)",
+          "border": "var(--cs-border-thin) solid var(--cs-border-primary)",
+          "shadow": "none"
+        },
+        "tertiary": {
+          "background": "transparent",
+          "foreground": "var(--cs-fg-brand)",
+          "border": "none",
+          "shadow": "none"
+        },
+        "danger": {
+          "background": "var(--cs-error-500)",
+          "foreground": "var(--cs-fg-inverse)",
+          "border": "none",
+          "shadow": "var(--cs-shadow-sm)"
+        },
+        "ghost": {
+          "background": "transparent",
+          "foreground": "var(--cs-fg-secondary)",
+          "border": "none",
+          "shadow": "none"
+        }
+      },
+      "sizes": {
+        "sm": { "height": "var(--cs-size-button-sm)", "padding": "0 var(--cs-space-3)", "fontSize": "var(--cs-text-label-sm)", "radius": "var(--cs-radius-md)" },
+        "md": { "height": "var(--cs-size-button-md)", "padding": "0 var(--cs-space-5)", "fontSize": "var(--cs-text-label-md)", "radius": "var(--cs-radius-md)" },
+        "lg": { "height": "var(--cs-size-button-lg)", "padding": "0 var(--cs-space-6)", "fontSize": "var(--cs-text-label-lg)", "radius": "var(--cs-radius-lg)" },
+        "xl": { "height": "var(--cs-size-button-xl)", "padding": "0 var(--cs-space-8)", "fontSize": "var(--cs-text-label-lg)", "radius": "var(--cs-radius-lg)" }
+      },
+      "states": {
+        "default": { "cursor": "pointer", "transition": "all var(--cs-duration-fast) var(--cs-ease-default)" },
+        "hover": { "filter": "brightness(1.06)", "shadow": "var(--cs-shadow-md)", "transform": "translateY(-1px)" },
+        "active": { "filter": "brightness(0.95)", "transform": "translateY(0)", "shadow": "var(--cs-shadow-xs)" },
+        "focus": { "outline": "none", "boxShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.5, "cursor": "not-allowed", "pointerEvents": "none" },
+        "loading": { "opacity": 0.85, "cursor": "wait" }
+      },
+      "props": {
+        "variant": "primary | secondary | tertiary | danger | ghost",
+        "size": "sm | md | lg | xl",
+        "leftIcon": "ReactNode",
+        "rightIcon": "ReactNode",
+        "isLoading": "boolean",
+        "isDisabled": "boolean",
+        "isFullWidth": "boolean"
+      },
+      "accessibility": {
+        "role": "button",
+        "ariaLabel": "Required when icon-only",
+        "ariaDisabled": "Mirrors isDisabled",
+        "focusVisible": true,
+        "keyboardActivation": "Enter, Space"
+      }
+    },
+
+    "02_IconButton": {
+      "category": "Foundation",
+      "description": "Compact button for icon-only actions. Square aspect ratio with centered icon.",
+      "variants": ["primary", "secondary", "ghost", "danger"],
+      "sizes": {
+        "sm": { "size": "32px", "iconSize": "var(--cs-size-icon-sm)", "radius": "var(--cs-radius-md)" },
+        "md": { "size": "40px", "iconSize": "var(--cs-size-icon-md)", "radius": "var(--cs-radius-md)" },
+        "lg": { "size": "48px", "iconSize": "var(--cs-size-icon-lg)", "radius": "var(--cs-radius-lg)" }
+      },
+      "states": {
+        "default": {},
+        "hover": { "background": "var(--cs-bg-tertiary)" },
+        "active": { "background": "var(--cs-carbon-300)" },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.5 }
+      },
+      "accessibility": {
+        "ariaLabel": "REQUIRED — must describe action",
+        "role": "button"
+      }
+    },
+
+    "03_Input": {
+      "category": "Input",
+      "description": "Text input field with floating or stacked label. Clean single-line border aesthetic.",
+      "anatomy": ["Container", "Label", "Input field", "Helper text", "Leading icon (optional)", "Trailing icon (optional)", "Clear button (optional)"],
+      "variants": {
+        "outlined": { "border": "var(--cs-border-thin) solid var(--cs-border-primary)", "background": "transparent" },
+        "filled": { "border": "none", "background": "var(--cs-bg-secondary)", "borderBottom": "var(--cs-border-medium) solid var(--cs-border-primary)" }
+      },
+      "sizes": {
+        "sm": { "height": "var(--cs-size-input-sm)", "fontSize": "var(--cs-text-body-sm)", "padding": "0 var(--cs-space-3)" },
+        "md": { "height": "var(--cs-size-input-md)", "fontSize": "var(--cs-text-body-md)", "padding": "0 var(--cs-space-4)" },
+        "lg": { "height": "var(--cs-size-input-lg)", "fontSize": "var(--cs-text-body-lg)", "padding": "0 var(--cs-space-5)" }
+      },
+      "states": {
+        "default": { "borderColor": "var(--cs-border-primary)" },
+        "hover": { "borderColor": "var(--cs-border-secondary)" },
+        "focus": { "borderColor": "var(--cs-border-focus)", "boxShadow": "0 0 0 3px rgba(212, 133, 74, 0.12)" },
+        "filled": { "labelTransform": "translateY(-100%) scale(0.85)" },
+        "error": { "borderColor": "var(--cs-border-error)", "boxShadow": "0 0 0 3px rgba(229, 77, 77, 0.1)" },
+        "success": { "borderColor": "var(--cs-border-success)" },
+        "disabled": { "opacity": 0.5, "background": "var(--cs-bg-tertiary)", "cursor": "not-allowed" },
+        "readonly": { "background": "var(--cs-bg-secondary)", "cursor": "default" }
+      },
+      "props": {
+        "label": "string",
+        "placeholder": "string",
+        "helperText": "string",
+        "errorMessage": "string",
+        "size": "sm | md | lg",
+        "variant": "outlined | filled",
+        "leadingIcon": "ReactNode",
+        "trailingIcon": "ReactNode",
+        "isClearable": "boolean",
+        "isRequired": "boolean",
+        "isDisabled": "boolean",
+        "isReadOnly": "boolean"
+      },
+      "accessibility": {
+        "label": "Always required via <label> or aria-label",
+        "ariaDescribedby": "Links to helper/error text",
+        "ariaInvalid": "true when error state",
+        "ariaRequired": "true when required"
+      }
+    },
+
+    "04_Textarea": {
+      "category": "Input",
+      "description": "Multi-line text input with auto-resize option. Maintains Input styling language.",
+      "sizes": { "sm": { "minHeight": "80px" }, "md": { "minHeight": "120px" }, "lg": { "minHeight": "200px" } },
+      "states": ["default", "hover", "focus", "error", "disabled", "readonly"],
+      "props": {
+        "label": "string",
+        "maxLength": "number",
+        "showCharCount": "boolean",
+        "autoResize": "boolean",
+        "resize": "none | vertical | both"
+      }
+    },
+
+    "05_Select": {
+      "category": "Input",
+      "description": "Dropdown selector with search and multi-select capabilities. Organic reveal animation.",
+      "anatomy": ["Trigger", "Dropdown panel", "Option item", "Option group", "Search input", "Empty state"],
+      "states": {
+        "default": {},
+        "hover": { "borderColor": "var(--cs-border-secondary)" },
+        "open": { "borderColor": "var(--cs-border-focus)", "shadow": "var(--cs-shadow-lg)" },
+        "selected": { "fontWeight": "var(--cs-weight-medium)" },
+        "error": { "borderColor": "var(--cs-border-error)" },
+        "disabled": { "opacity": 0.5 }
+      },
+      "props": {
+        "options": "Option[]",
+        "isMulti": "boolean",
+        "isSearchable": "boolean",
+        "placeholder": "string",
+        "isClearable": "boolean"
+      },
+      "animation": {
+        "open": "cs-scale-in var(--cs-duration-moderate) var(--cs-ease-spring)",
+        "close": "cs-fade-out var(--cs-duration-fast) var(--cs-ease-in)"
+      }
+    },
+
+    "06_Checkbox": {
+      "category": "Input",
+      "description": "Binary selection with organic check animation. Supports indeterminate for tree structures.",
+      "sizes": {
+        "sm": { "box": "16px", "radius": "var(--cs-radius-sm)" },
+        "md": { "box": "20px", "radius": "var(--cs-radius-sm)" },
+        "lg": { "box": "24px", "radius": "var(--cs-radius-md)" }
+      },
+      "states": {
+        "unchecked": { "border": "var(--cs-border-medium) solid var(--cs-border-secondary)", "background": "transparent" },
+        "checked": { "border": "none", "background": "var(--cs-interactive-primary)", "icon": "check-white" },
+        "indeterminate": { "border": "none", "background": "var(--cs-interactive-primary)", "icon": "minus-white" },
+        "hover": { "borderColor": "var(--cs-interactive-primary)" },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.4 },
+        "error": { "borderColor": "var(--cs-error-500)" }
+      },
+      "animation": {
+        "check": "cs-scale-in var(--cs-duration-fast) var(--cs-ease-spring)"
+      },
+      "accessibility": {
+        "role": "checkbox",
+        "ariaChecked": "true | false | mixed",
+        "keyboardToggle": "Space"
+      }
+    },
+
+    "07_RadioGroup": {
+      "category": "Input",
+      "description": "Single selection from a group. Circular indicator with inner dot animation.",
+      "sizes": {
+        "sm": { "circle": "16px" },
+        "md": { "circle": "20px" },
+        "lg": { "circle": "24px" }
+      },
+      "states": {
+        "unselected": { "border": "var(--cs-border-medium) solid var(--cs-border-secondary)" },
+        "selected": { "border": "var(--cs-border-thick) solid var(--cs-interactive-primary)", "innerDot": "var(--cs-interactive-primary)" },
+        "hover": { "borderColor": "var(--cs-interactive-primary)" },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.4 }
+      },
+      "accessibility": {
+        "role": "radiogroup / radio",
+        "ariaChecked": "boolean",
+        "keyboardNav": "Arrow keys to navigate, Space to select"
+      }
+    },
+
+    "08_Toggle": {
+      "category": "Input",
+      "description": "Binary switch with satisfying spring animation. Thumb slides with overshoot.",
+      "sizes": {
+        "sm": { "track": "36px x 20px", "thumb": "16px" },
+        "md": { "track": "44px x 24px", "thumb": "20px" },
+        "lg": { "track": "52px x 28px", "thumb": "24px" }
+      },
+      "states": {
+        "off": { "trackColor": "var(--cs-carbon-300)", "thumbColor": "white" },
+        "on": { "trackColor": "var(--cs-interactive-primary)", "thumbColor": "white" },
+        "hover": { "trackOpacity": 0.85 },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.4 }
+      },
+      "animation": {
+        "toggle": "transform var(--cs-duration-moderate) var(--cs-ease-spring)"
+      },
+      "accessibility": {
+        "role": "switch",
+        "ariaChecked": "boolean",
+        "keyboardToggle": "Space"
+      }
+    },
+
+    "09_DatePicker": {
+      "category": "Input",
+      "description": "Calendar-based date selection. Clean grid layout with organic hover states.",
+      "anatomy": ["Input trigger", "Calendar dropdown", "Month/year navigation", "Day grid", "Today indicator"],
+      "states": ["default", "hover", "open", "selected", "range", "disabled", "error"],
+      "props": {
+        "mode": "single | range",
+        "minDate": "Date",
+        "maxDate": "Date",
+        "format": "string",
+        "placeholder": "string"
+      }
+    },
+
+    "10_Slider": {
+      "category": "Input",
+      "description": "Range value selector with smooth thumb tracking. Supports single and range mode.",
+      "anatomy": ["Track", "Fill", "Thumb", "Value tooltip", "Step markers"],
+      "states": {
+        "default": { "trackColor": "var(--cs-carbon-200)", "fillColor": "var(--cs-interactive-primary)" },
+        "hover": { "thumbScale": 1.15 },
+        "active": { "thumbScale": 1.25, "showTooltip": true },
+        "focus": { "thumbShadow": "var(--cs-focus-ring)" },
+        "disabled": { "opacity": 0.4 }
+      },
+      "props": {
+        "min": "number",
+        "max": "number",
+        "step": "number",
+        "mode": "single | range",
+        "showTooltip": "boolean"
+      }
+    },
+
+    "11_Avatar": {
+      "category": "Data Display",
+      "description": "User representation with image, initials, or icon fallback. Warm border radius.",
+      "sizes": {
+        "xs": { "size": "var(--cs-size-avatar-xs)", "fontSize": "10px" },
+        "sm": { "size": "var(--cs-size-avatar-sm)", "fontSize": "var(--cs-text-label-sm)" },
+        "md": { "size": "var(--cs-size-avatar-md)", "fontSize": "var(--cs-text-label-md)" },
+        "lg": { "size": "var(--cs-size-avatar-lg)", "fontSize": "var(--cs-text-label-lg)" },
+        "xl": { "size": "var(--cs-size-avatar-xl)", "fontSize": "var(--cs-text-body-lg)" },
+        "2xl": { "size": "var(--cs-size-avatar-2xl)", "fontSize": "var(--cs-text-heading-md)" }
+      },
+      "variants": {
+        "image": { "objectFit": "cover" },
+        "initials": { "background": "var(--cs-bg-brand-subtle)", "color": "var(--cs-fg-brand)" },
+        "icon": { "background": "var(--cs-bg-tertiary)", "color": "var(--cs-fg-secondary)" }
+      },
+      "shape": "circle (default) | rounded-lg",
+      "statusIndicator": {
+        "online": "var(--cs-success-500)",
+        "offline": "var(--cs-carbon-400)",
+        "busy": "var(--cs-error-500)",
+        "away": "var(--cs-warning-500)"
+      },
+      "props": {
+        "src": "string",
+        "alt": "string (REQUIRED)",
+        "name": "string",
+        "size": "xs | sm | md | lg | xl | 2xl",
+        "status": "online | offline | busy | away"
+      }
+    },
+
+    "12_AvatarGroup": {
+      "category": "Data Display",
+      "description": "Stacked avatar collection with overflow count. Negative margin overlap.",
+      "specs": {
+        "overlap": "-8px margin-left per avatar",
+        "maxVisible": 5,
+        "overflowBadge": { "background": "var(--cs-bg-tertiary)", "fontSize": "var(--cs-text-label-sm)" }
+      }
+    },
+
+    "13_Badge": {
+      "category": "Data Display",
+      "description": "Status indicator and count label. Pill-shaped with subtle shadow.",
+      "variants": {
+        "solid": { "background": "filled", "foreground": "white" },
+        "soft": { "background": "10% opacity fill", "foreground": "full color" },
+        "outline": { "background": "transparent", "border": "1px solid" }
+      },
+      "colors": ["default", "brand", "success", "warning", "error", "info"],
+      "sizes": {
+        "sm": { "height": "20px", "fontSize": "var(--cs-text-label-sm)", "padding": "0 var(--cs-space-1-5)", "radius": "var(--cs-radius-full)" },
+        "md": { "height": "24px", "fontSize": "var(--cs-text-label-sm)", "padding": "0 var(--cs-space-2)", "radius": "var(--cs-radius-full)" },
+        "lg": { "height": "28px", "fontSize": "var(--cs-text-label-md)", "padding": "0 var(--cs-space-3)", "radius": "var(--cs-radius-full)" }
+      },
+      "props": {
+        "label": "string",
+        "count": "number",
+        "maxCount": "number (shows 99+ pattern)",
+        "dot": "boolean (status dot only, no text)",
+        "removable": "boolean"
+      }
+    },
+
+    "14_Tag": {
+      "category": "Data Display",
+      "description": "Categorization label with optional dismiss. Rounded with comfortable padding.",
+      "variants": ["solid", "soft", "outline"],
+      "sizes": {
+        "sm": { "height": "24px", "fontSize": "var(--cs-text-label-sm)", "radius": "var(--cs-radius-md)" },
+        "md": { "height": "28px", "fontSize": "var(--cs-text-label-md)", "radius": "var(--cs-radius-md)" },
+        "lg": { "height": "32px", "fontSize": "var(--cs-text-label-md)", "radius": "var(--cs-radius-lg)" }
+      },
+      "states": ["default", "hover", "active", "focus", "disabled"],
+      "props": {
+        "label": "string",
+        "leadingIcon": "ReactNode",
+        "isDismissible": "boolean",
+        "isSelected": "boolean",
+        "color": "string"
+      }
+    },
+
+    "15_Card": {
+      "category": "Layout",
+      "description": "Content container with warm shadow and generous padding. The workhorse of the dashboard.",
+      "anatomy": ["Container", "Header (optional)", "Body", "Footer (optional)", "Media (optional)"],
+      "variants": {
+        "elevated": { "background": "var(--cs-bg-secondary)", "shadow": "var(--cs-shadow-sm)", "border": "none" },
+        "outlined": { "background": "var(--cs-bg-primary)", "shadow": "none", "border": "var(--cs-border-thin) solid var(--cs-border-primary)" },
+        "filled": { "background": "var(--cs-bg-secondary)", "shadow": "none", "border": "none" },
+        "ghost": { "background": "transparent", "shadow": "none", "border": "none" }
+      },
+      "sizes": {
+        "sm": { "padding": "var(--cs-space-4)", "radius": "var(--cs-radius-lg)", "gap": "var(--cs-space-3)" },
+        "md": { "padding": "var(--cs-space-6)", "radius": "var(--cs-radius-xl)", "gap": "var(--cs-space-4)" },
+        "lg": { "padding": "var(--cs-space-8)", "radius": "var(--cs-radius-2xl)", "gap": "var(--cs-space-6)" }
+      },
+      "states": {
+        "default": {},
+        "hover": { "shadow": "var(--cs-shadow-md)", "transform": "translateY(-2px)", "_condition": "only when clickable" },
+        "active": { "shadow": "var(--cs-shadow-sm)", "transform": "translateY(0)" },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" },
+        "selected": { "border": "var(--cs-border-thick) solid var(--cs-interactive-primary)" }
+      },
+      "animation": {
+        "hover": "all var(--cs-duration-normal) var(--cs-ease-default)"
+      }
+    },
+
+    "16_Table": {
+      "category": "Data Display",
+      "description": "Data table with sorting, selection, and pagination. Clean horizontal rules only.",
+      "anatomy": ["Container", "Header row", "Body rows", "Footer/pagination", "Empty state"],
+      "specs": {
+        "rowHeight": { "compact": "40px", "default": "52px", "comfortable": "64px" },
+        "headerHeight": "44px",
+        "cellPadding": "var(--cs-space-3) var(--cs-space-4)",
+        "borderBottom": "var(--cs-border-thin) solid var(--cs-border-primary)",
+        "headerBackground": "var(--cs-bg-secondary)",
+        "headerFontWeight": "var(--cs-weight-semibold)",
+        "headerFontSize": "var(--cs-text-label-sm)",
+        "headerTextTransform": "none",
+        "headerColor": "var(--cs-fg-secondary)"
+      },
+      "states": {
+        "rowDefault": {},
+        "rowHover": { "background": "var(--cs-bg-secondary)" },
+        "rowSelected": { "background": "var(--cs-bg-brand-subtle)" },
+        "rowExpanded": { "borderBottom": "none" },
+        "sortable": { "cursor": "pointer" },
+        "sortAsc": { "icon": "chevron-up" },
+        "sortDesc": { "icon": "chevron-down" }
+      },
+      "features": ["Sorting", "Row selection", "Row expansion", "Column resize", "Sticky header", "Pagination", "Empty state", "Loading skeleton"]
+    },
+
+    "17_Tabs": {
+      "category": "Navigation",
+      "description": "Content section switcher with animated underline indicator. Fluid width tabs.",
+      "variants": {
+        "underline": { "indicator": "2px bottom border", "indicatorColor": "var(--cs-interactive-primary)" },
+        "pills": { "indicator": "filled background", "indicatorColor": "var(--cs-bg-tertiary)", "radius": "var(--cs-radius-full)" },
+        "enclosed": { "indicator": "border-bottom removed", "background": "var(--cs-bg-secondary)" }
+      },
+      "sizes": {
+        "sm": { "height": "36px", "fontSize": "var(--cs-text-label-sm)", "gap": "var(--cs-space-1)" },
+        "md": { "height": "44px", "fontSize": "var(--cs-text-label-md)", "gap": "var(--cs-space-2)" },
+        "lg": { "height": "52px", "fontSize": "var(--cs-text-label-lg)", "gap": "var(--cs-space-3)" }
+      },
+      "states": {
+        "default": { "color": "var(--cs-fg-secondary)" },
+        "hover": { "color": "var(--cs-fg-primary)" },
+        "active": { "color": "var(--cs-fg-brand)", "fontWeight": "var(--cs-weight-semibold)" },
+        "disabled": { "opacity": 0.4 },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" }
+      },
+      "animation": {
+        "indicator": "transform var(--cs-duration-moderate) var(--cs-ease-spring)"
+      },
+      "accessibility": {
+        "role": "tablist / tab / tabpanel",
+        "ariaSelected": "boolean",
+        "keyboardNav": "Arrow keys to navigate, Enter/Space to select"
+      }
+    },
+
+    "18_Breadcrumb": {
+      "category": "Navigation",
+      "description": "Hierarchical page location indicator. Subtle separator with truncation for deep paths.",
+      "specs": {
+        "separator": "/ (chevron-right icon)",
+        "fontSize": "var(--cs-text-body-sm)",
+        "gap": "var(--cs-space-2)",
+        "currentPageWeight": "var(--cs-weight-medium)",
+        "linkColor": "var(--cs-fg-secondary)",
+        "currentColor": "var(--cs-fg-primary)",
+        "maxItems": "Auto-collapse to first + last with ellipsis"
+      },
+      "states": {
+        "linkDefault": { "color": "var(--cs-fg-secondary)" },
+        "linkHover": { "color": "var(--cs-fg-primary)", "textDecoration": "underline" },
+        "current": { "color": "var(--cs-fg-primary)", "fontWeight": "var(--cs-weight-medium)" }
+      },
+      "accessibility": {
+        "role": "navigation",
+        "ariaLabel": "Breadcrumb",
+        "ariaCurrent": "page (on last item)"
+      }
+    },
+
+    "19_Sidebar": {
+      "category": "Navigation",
+      "description": "Main application navigation. Collapsible with icon-only compact mode. Warm accent on active items.",
+      "anatomy": ["Header/logo", "Primary nav items", "Divider", "Secondary nav items", "Footer/user area", "Collapse toggle"],
+      "specs": {
+        "width": {
+          "expanded": "var(--cs-sidebar-default)",
+          "collapsed": "var(--cs-sidebar-collapsed)"
+        },
+        "background": "var(--cs-bg-primary)",
+        "borderRight": "var(--cs-border-thin) solid var(--cs-border-primary)",
+        "itemHeight": "40px",
+        "itemPadding": "0 var(--cs-space-3)",
+        "itemRadius": "var(--cs-radius-md)",
+        "itemGap": "var(--cs-space-1)",
+        "sectionGap": "var(--cs-space-4)"
+      },
+      "navItemStates": {
+        "default": { "color": "var(--cs-fg-secondary)", "background": "transparent" },
+        "hover": { "color": "var(--cs-fg-primary)", "background": "var(--cs-bg-secondary)" },
+        "active": { "color": "var(--cs-fg-brand)", "background": "var(--cs-bg-brand-subtle)", "fontWeight": "var(--cs-weight-medium)" },
+        "focus": { "boxShadow": "var(--cs-focus-ring)" }
+      },
+      "animation": {
+        "collapse": "width var(--cs-duration-slow) var(--cs-ease-in-out)"
+      }
+    },
+
+    "20_Topbar": {
+      "category": "Navigation",
+      "description": "Horizontal header bar with search, notifications, and user menu. Subtle bottom border.",
+      "specs": {
+        "height": "64px",
+        "background": "var(--cs-bg-primary)",
+        "borderBottom": "var(--cs-border-thin) solid var(--cs-border-primary)",
+        "padding": "0 var(--cs-space-6)",
+        "zIndex": "var(--cs-z-sticky)"
+      },
+      "anatomy": ["Logo/breadcrumb area", "Search bar (center/expanded)", "Action icons", "Notification bell", "User avatar + dropdown"]
+    },
+
+    "21_Modal": {
+      "category": "Overlay",
+      "description": "Focused dialog for critical actions. Centered with backdrop blur for luxury feel.",
+      "anatomy": ["Backdrop", "Container", "Header", "Body", "Footer actions", "Close button"],
+      "sizes": {
+        "sm": { "maxWidth": "400px", "padding": "var(--cs-space-6)" },
+        "md": { "maxWidth": "560px", "padding": "var(--cs-space-8)" },
+        "lg": { "maxWidth": "720px", "padding": "var(--cs-space-8)" },
+        "xl": { "maxWidth": "960px", "padding": "var(--cs-space-8)" },
+        "full": { "width": "100vw", "height": "100vh", "radius": "0" }
+      },
+      "specs": {
+        "radius": "var(--cs-radius-2xl)",
+        "background": "var(--cs-bg-primary)",
+        "shadow": "var(--cs-shadow-2xl)",
+        "backdrop": "var(--cs-bg-overlay)",
+        "backdropFilter": "blur(8px)"
+      },
+      "animation": {
+        "enter": {
+          "backdrop": "cs-fade-in var(--cs-duration-moderate) var(--cs-ease-out)",
+          "container": "cs-scale-in var(--cs-duration-slower) var(--cs-ease-spring)"
+        },
+        "exit": {
+          "backdrop": "cs-fade-out var(--cs-duration-fast) var(--cs-ease-in)",
+          "container": "cs-fade-out var(--cs-duration-fast) var(--cs-ease-in)"
+        }
+      },
+      "accessibility": {
+        "role": "dialog",
+        "ariaModal": true,
+        "ariaLabelledby": "header title id",
+        "ariaDescribedby": "body content id",
+        "focusTrap": true,
+        "closeOnEscape": true,
+        "returnFocusOnClose": true
+      }
+    },
+
+    "22_Drawer": {
+      "category": "Overlay",
+      "description": "Slide-out panel from any edge. Used for filters, detail views, and settings.",
+      "positions": ["left", "right", "top", "bottom"],
+      "sizes": {
+        "sm": { "width": "320px" },
+        "md": { "width": "480px" },
+        "lg": { "width": "640px" },
+        "xl": { "width": "50vw" }
+      },
+      "specs": {
+        "background": "var(--cs-bg-primary)",
+        "shadow": "var(--cs-shadow-2xl)",
+        "backdrop": "var(--cs-bg-overlay)"
+      },
+      "animation": {
+        "enter": "cs-slide-in-right var(--cs-duration-slow) var(--cs-ease-out)",
+        "exit": "reverse var(--cs-duration-moderate) var(--cs-ease-in)"
+      }
+    },
+
+    "23_Toast": {
+      "category": "Feedback",
+      "description": "Non-blocking notification. Slides in from top-right with auto-dismiss.",
+      "variants": {
+        "info": { "accentColor": "var(--cs-info-500)", "icon": "info-circle" },
+        "success": { "accentColor": "var(--cs-success-500)", "icon": "check-circle" },
+        "warning": { "accentColor": "var(--cs-warning-500)", "icon": "alert-triangle" },
+        "error": { "accentColor": "var(--cs-error-500)", "icon": "x-circle" }
+      },
+      "specs": {
+        "maxWidth": "420px",
+        "padding": "var(--cs-space-4)",
+        "radius": "var(--cs-radius-xl)",
+        "background": "var(--cs-bg-primary)",
+        "shadow": "var(--cs-shadow-lg)",
+        "border": "var(--cs-border-thin) solid var(--cs-border-primary)",
+        "accentBorder": "3px left border with variant color",
+        "autoDismiss": "5000ms (configurable)",
+        "zIndex": "var(--cs-z-toast)",
+        "position": "top-right",
+        "stackGap": "var(--cs-space-2)"
+      },
+      "animation": {
+        "enter": "cs-slide-in-right var(--cs-duration-moderate) var(--cs-ease-out)",
+        "exit": "cs-fade-out var(--cs-duration-fast) var(--cs-ease-in)",
+        "stack": "transform var(--cs-duration-moderate) var(--cs-ease-organic)"
+      }
+    },
+
+    "24_Tooltip": {
+      "category": "Overlay",
+      "description": "Contextual hint on hover/focus. Dark surface with high contrast text.",
+      "specs": {
+        "maxWidth": "280px",
+        "padding": "var(--cs-space-2) var(--cs-space-3)",
+        "radius": "var(--cs-radius-md)",
+        "background": "var(--cs-carbon-900)",
+        "color": "var(--cs-carbon-100)",
+        "fontSize": "var(--cs-text-body-sm)",
+        "shadow": "var(--cs-shadow-lg)",
+        "zIndex": "var(--cs-z-tooltip)",
+        "arrow": "6px triangle",
+        "delay": "300ms show, 0ms hide"
+      },
+      "placements": ["top", "right", "bottom", "left"],
+      "animation": {
+        "enter": "cs-fade-in var(--cs-duration-fast) var(--cs-ease-out)"
+      }
+    },
+
+    "25_Popover": {
+      "category": "Overlay",
+      "description": "Rich content overlay triggered by click. Replaces dropdowns for complex content.",
+      "specs": {
+        "maxWidth": "360px",
+        "padding": "var(--cs-space-4)",
+        "radius": "var(--cs-radius-xl)",
+        "background": "var(--cs-bg-primary)",
+        "shadow": "var(--cs-shadow-xl)",
+        "border": "var(--cs-border-thin) solid var(--cs-border-primary)",
+        "zIndex": "var(--cs-z-popover)"
+      },
+      "animation": {
+        "enter": "cs-scale-in var(--cs-duration-moderate) var(--cs-ease-spring)"
+      },
+      "accessibility": {
+        "role": "dialog",
+        "ariaExpanded": "boolean",
+        "closeOnEscape": true,
+        "closeOnClickOutside": true
+      }
+    },
+
+    "26_ProgressBar": {
+      "category": "Feedback",
+      "description": "Linear progress indicator with organic fill animation.",
+      "variants": {
+        "determinate": { "fill": "width percentage" },
+        "indeterminate": { "fill": "animated shimmer loop" }
+      },
+      "sizes": {
+        "sm": { "height": "4px", "radius": "var(--cs-radius-full)" },
+        "md": { "height": "8px", "radius": "var(--cs-radius-full)" },
+        "lg": { "height": "12px", "radius": "var(--cs-radius-full)" }
+      },
+      "specs": {
+        "trackColor": "var(--cs-bg-tertiary)",
+        "fillColor": "var(--cs-interactive-primary)",
+        "successColor": "var(--cs-success-500)",
+        "errorColor": "var(--cs-error-500)"
+      },
+      "animation": {
+        "fill": "width var(--cs-duration-slow) var(--cs-ease-organic)"
+      }
+    },
+
+    "27_Skeleton": {
+      "category": "Feedback",
+      "description": "Content placeholder during loading. Warm-tinted shimmer animation.",
+      "variants": {
+        "text": { "height": "1em", "radius": "var(--cs-radius-sm)", "width": "random 60-100%" },
+        "circle": { "radius": "var(--cs-radius-full)" },
+        "rect": { "radius": "var(--cs-radius-md)" },
+        "card": { "radius": "var(--cs-radius-xl)", "height": "200px" }
+      },
+      "specs": {
+        "baseColor": "var(--cs-carbon-200)",
+        "shimmerColor": "var(--cs-carbon-100)",
+        "animation": "cs-skeleton 2000ms linear infinite",
+        "gradient": "linear-gradient(90deg, transparent, var(--cs-carbon-100), transparent)"
+      }
+    },
+
+    "28_EmptyState": {
+      "category": "Feedback",
+      "description": "Placeholder for empty content areas. Illustration + copy + action pattern.",
+      "anatomy": ["Illustration/icon", "Heading", "Description", "Primary CTA", "Secondary action (optional)"],
+      "specs": {
+        "maxWidth": "420px",
+        "alignment": "center",
+        "illustrationSize": "120px x 120px",
+        "headingStyle": "heading-md",
+        "descriptionStyle": "body-md, foreground-secondary",
+        "gap": "var(--cs-space-4)",
+        "padding": "var(--cs-space-12) var(--cs-space-6)"
+      }
+    },
+
+    "29_Divider": {
+      "category": "Layout",
+      "description": "Visual separator. Thin rule with warm tone.",
+      "variants": {
+        "horizontal": { "height": "1px", "width": "100%" },
+        "vertical": { "width": "1px", "height": "100%" }
+      },
+      "specs": {
+        "color": "var(--cs-border-primary)",
+        "margin": "var(--cs-space-4) 0",
+        "withLabel": { "fontSize": "var(--cs-text-label-sm)", "color": "var(--cs-fg-tertiary)", "padding": "0 var(--cs-space-3)" }
+      }
+    },
+
+    "30_KPICard": {
+      "category": "Data Display",
+      "description": "Dashboard metric card. Large data number with trend indicator. The signature CarbonS component.",
+      "anatomy": ["Container (Card)", "Overline label", "Data value", "Trend indicator", "Sparkline (optional)", "Period selector (optional)"],
+      "specs": {
+        "padding": "var(--cs-space-6)",
+        "radius": "var(--cs-radius-xl)",
+        "background": "var(--cs-bg-secondary)",
+        "shadow": "var(--cs-shadow-sm)",
+        "overlineStyle": "overline type style",
+        "dataStyle": "typography.utility.data",
+        "trendUp": { "color": "var(--cs-success-600)", "icon": "arrow-up-right" },
+        "trendDown": { "color": "var(--cs-error-600)", "icon": "arrow-down-right" },
+        "trendNeutral": { "color": "var(--cs-fg-tertiary)", "icon": "arrow-right" }
+      },
+      "states": {
+        "default": {},
+        "hover": { "shadow": "var(--cs-shadow-md)", "transform": "translateY(-2px)" },
+        "loading": "Skeleton with pulse animation"
+      },
+      "props": {
+        "label": "string",
+        "value": "string | number",
+        "previousValue": "string | number",
+        "trend": "up | down | neutral",
+        "trendLabel": "string",
+        "sparklineData": "number[]",
+        "isLoading": "boolean"
+      }
+    }
+  }
+}

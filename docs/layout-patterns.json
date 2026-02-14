@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "name": "CarbonS Design System — Layout Patterns",
+    "version": "1.0.0",
+    "description": "Responsive layout patterns for the CarbonS management SaaS. Mobile-first, generous whitespace."
+  },
+
+  "breakpoints": {
+    "sm":  { "min": "640px",  "label": "Small mobile",    "columns": 4,  "margin": "16px", "gutter": "16px" },
+    "md":  { "min": "768px",  "label": "Tablet portrait",  "columns": 8,  "margin": "24px", "gutter": "24px" },
+    "lg":  { "min": "1024px", "label": "Tablet landscape / small desktop", "columns": 12, "margin": "32px", "gutter": "24px" },
+    "xl":  { "min": "1280px", "label": "Desktop",           "columns": 12, "margin": "32px", "gutter": "24px" },
+    "2xl": { "min": "1440px", "label": "Wide desktop",      "columns": 12, "margin": "auto", "gutter": "24px", "maxWidth": "1440px" },
+    "3xl": { "min": "1680px", "label": "Ultra-wide",        "columns": 12, "margin": "auto", "gutter": "24px", "maxWidth": "1680px" }
+  },
+
+  "patterns": {
+    "dashboardShell": {
+      "description": "Primary application layout — sidebar + topbar + content area.",
+      "structure": {
+        "mobile": {
+          "sidebar": "hidden, accessible via hamburger menu (Drawer)",
+          "topbar": "sticky, 56px height, hamburger + logo + avatar",
+          "content": "full width, padding 16px"
+        },
+        "tablet": {
+          "sidebar": "collapsed (64px icons-only), fixed left",
+          "topbar": "sticky, 64px height",
+          "content": "calc(100% - 64px) width, padding 24px"
+        },
+        "desktop": {
+          "sidebar": "expanded (260px), fixed left",
+          "topbar": "sticky, 64px height",
+          "content": "calc(100% - 260px) width, padding 32px"
+        },
+        "wideDesktop": {
+          "sidebar": "expanded (260px), fixed left",
+          "topbar": "sticky, 64px height",
+          "content": "max-width 1180px, centered in remaining space"
+        }
+      },
+      "css": "display: grid; grid-template-columns: var(--sidebar-width) 1fr; grid-template-rows: var(--topbar-height) 1fr;"
+    },
+
+    "metricsGrid": {
+      "description": "KPI cards in responsive grid. 1→2→3→4 columns.",
+      "responsive": {
+        "mobile":  "1 column, full width cards, gap 16px",
+        "tablet":  "2 columns, gap 20px",
+        "desktop": "3 columns, gap 24px",
+        "wide":    "4 columns, gap 24px"
+      },
+      "css": "display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--cs-space-6);"
+    },
+
+    "contentWithAside": {
+      "description": "Main content area with optional sidebar details panel.",
+      "responsive": {
+        "mobile": "single column, stacked (content then aside)",
+        "tablet": "single column, stacked",
+        "desktop": "2-column: content (8/12) + aside (4/12), gap 32px",
+        "wide": "2-column: content (9/12) + aside (3/12), gap 32px"
+      },
+      "css": "display: grid; grid-template-columns: 1fr; @media (min-width: 1024px) { grid-template-columns: 2fr 1fr; }"
+    },
+
+    "formLayout": {
+      "description": "Form field arrangement — stacked on mobile, 2-column on desktop.",
+      "responsive": {
+        "mobile": "single column, full width fields, gap 20px",
+        "tablet": "single column, max-width 600px, centered",
+        "desktop": "2 columns for short fields, full width for textareas, gap 24px"
+      },
+      "fieldGrouping": {
+        "fullWidth": ["textarea", "file-upload", "rich-text"],
+        "halfWidth": ["text", "email", "phone", "select", "date-picker"],
+        "thirdWidth": ["zip", "state", "country-code"]
+      },
+      "sectionSpacing": "var(--cs-space-8) between form sections"
+    },
+
+    "listDetail": {
+      "description": "Master-detail pattern for browsing records.",
+      "responsive": {
+        "mobile": "list view only, tap to navigate to detail page",
+        "tablet": "split view: list (40%) + detail (60%)",
+        "desktop": "split view: list (320px fixed) + detail (fill), resizable"
+      }
+    },
+
+    "dataTable": {
+      "description": "Table with filter bar pattern for data-heavy views.",
+      "responsive": {
+        "mobile": "card view (each row becomes a card), filter in drawer",
+        "tablet": "horizontal scroll table, sticky first column",
+        "desktop": "full table, inline filter bar above, pagination below"
+      },
+      "structure": {
+        "filterBar": "above table, horizontal row of filter chips + search + action button",
+        "table": "full width, alternating row backgrounds optional",
+        "pagination": "below table, right-aligned, showing range + page controls",
+        "bulkActions": "sticky bottom bar when rows selected"
+      }
+    },
+
+    "settingsPage": {
+      "description": "Vertical navigation + form content for settings/preferences.",
+      "responsive": {
+        "mobile": "accordion sections, all collapsed by default",
+        "tablet": "tab navigation at top, content below",
+        "desktop": "left nav (200px) + content area, sticky nav"
+      }
+    },
+
+    "emptyCanvas": {
+      "description": "Full-page empty state for first-time or empty views.",
+      "specs": {
+        "maxWidth": "480px",
+        "centered": true,
+        "verticalPosition": "40% from top (slightly above center for visual comfort)",
+        "elements": ["illustration (120x120)", "heading", "description", "primary CTA", "secondary link"]
+      }
+    },
+
+    "authPages": {
+      "description": "Login/signup/forgot-password pages.",
+      "responsive": {
+        "mobile": "centered card, full-width, minimal padding",
+        "desktop": "split layout: left panel (brand/illustration, 50%) + right panel (form, 50%)"
+      },
+      "formCardSpecs": {
+        "maxWidth": "440px",
+        "padding": "var(--cs-space-8)",
+        "radius": "var(--cs-radius-2xl)",
+        "shadow": "var(--cs-shadow-xl)"
+      }
+    }
+  },
+
+  "sectionSpacing": {
+    "description": "Vertical rhythm between major page sections.",
+    "mobile":  { "padding": "var(--cs-space-12)", "comment": "48px" },
+    "tablet":  { "padding": "var(--cs-space-16)", "comment": "64px" },
+    "desktop": { "padding": "var(--cs-space-24)", "comment": "96px" }
+  },
+
+  "contentWidth": {
+    "prose":     { "maxWidth": "720px",  "use": "Long-form text content, documentation" },
+    "form":      { "maxWidth": "640px",  "use": "Forms, settings panels" },
+    "dashboard": { "maxWidth": "1440px", "use": "Dashboard content area" },
+    "full":      { "maxWidth": "none",   "use": "Data tables, complex layouts" }
+  }
+}

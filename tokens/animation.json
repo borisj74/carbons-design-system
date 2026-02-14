@@ -1,0 +1,156 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "meta": {
+    "name": "CarbonS Design System — Animation & Motion Tokens",
+    "version": "1.0.0",
+    "description": "Motion language: organic, unhurried, intentional. Inspired by natural movement — never mechanical."
+  },
+
+  "animation": {
+    "duration": {
+      "_description": "Duration scale. Luxury brands use slightly longer durations for perceived quality.",
+      "instant":  { "$value": "0ms",   "$type": "duration", "_description": "No animation" },
+      "fast":     { "$value": "120ms", "$type": "duration", "_description": "Micro-interactions: hover, toggle, focus" },
+      "normal":   { "$value": "200ms", "$type": "duration", "_description": "Default transitions: color, opacity, border" },
+      "moderate": { "$value": "300ms", "$type": "duration", "_description": "Component state changes: expand, collapse" },
+      "slow":     { "$value": "400ms", "$type": "duration", "_description": "Layout shifts: sidebar open, panel slide" },
+      "slower":   { "$value": "500ms", "$type": "duration", "_description": "Entrance animations: modal, page transition" },
+      "slowest":  { "$value": "700ms", "$type": "duration", "_description": "Dramatic reveals: hero, onboarding" }
+    },
+
+    "easing": {
+      "_description": "Custom cubic-beziers inspired by natural, organic motion curves.",
+
+      "default":    { "$value": "cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "cubicBezier", "_description": "Standard — subtle ease-out for most interactions" },
+      "in":         { "$value": "cubic-bezier(0.55, 0.0, 0.68, 0.19)", "$type": "cubicBezier", "_description": "Accelerate — elements leaving view" },
+      "out":        { "$value": "cubic-bezier(0.22, 0.61, 0.36, 1.0)", "$type": "cubicBezier", "_description": "Decelerate — elements entering view" },
+      "in-out":     { "$value": "cubic-bezier(0.45, 0.0, 0.40, 1.0)", "$type": "cubicBezier", "_description": "Symmetrical — layout reflows, resizing" },
+      "bounce":     { "$value": "cubic-bezier(0.34, 1.56, 0.64, 1.0)", "$type": "cubicBezier", "_description": "Subtle overshoot — attention-drawing, celebrations" },
+      "spring":     { "$value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)", "$type": "cubicBezier", "_description": "Natural spring — toggle, switch, selection" },
+      "organic":    { "$value": "cubic-bezier(0.4, 0.0, 0.2, 1.0)", "$type": "cubicBezier", "_description": "Material-inspired organic motion" }
+    },
+
+    "transition": {
+      "_description": "Pre-composed transitions for common patterns.",
+
+      "color":     { "$value": "color 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "opacity":   { "$value": "opacity 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "transform":  { "$value": "transform 300ms cubic-bezier(0.22, 0.61, 0.36, 1.0)", "$type": "transition" },
+      "shadow":    { "$value": "box-shadow 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "background": { "$value": "background-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "border":    { "$value": "border-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "all":       { "$value": "all 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0)", "$type": "transition" },
+      "expand":    { "$value": "all 400ms cubic-bezier(0.45, 0.0, 0.40, 1.0)", "$type": "transition" }
+    },
+
+    "keyframe": {
+      "_description": "Named animation patterns.",
+
+      "fadeIn": {
+        "$type": "keyframe",
+        "from": { "opacity": 0 },
+        "to":   { "opacity": 1 },
+        "_duration": "300ms",
+        "_easing": "out"
+      },
+
+      "fadeOut": {
+        "$type": "keyframe",
+        "from": { "opacity": 1 },
+        "to":   { "opacity": 0 },
+        "_duration": "200ms",
+        "_easing": "in"
+      },
+
+      "slideInUp": {
+        "$type": "keyframe",
+        "from": { "opacity": 0, "transform": "translateY(16px)" },
+        "to":   { "opacity": 1, "transform": "translateY(0)" },
+        "_duration": "400ms",
+        "_easing": "out"
+      },
+
+      "slideInDown": {
+        "$type": "keyframe",
+        "from": { "opacity": 0, "transform": "translateY(-16px)" },
+        "to":   { "opacity": 1, "transform": "translateY(0)" },
+        "_duration": "400ms",
+        "_easing": "out"
+      },
+
+      "slideInLeft": {
+        "$type": "keyframe",
+        "from": { "opacity": 0, "transform": "translateX(-24px)" },
+        "to":   { "opacity": 1, "transform": "translateX(0)" },
+        "_duration": "400ms",
+        "_easing": "out"
+      },
+
+      "slideInRight": {
+        "$type": "keyframe",
+        "from": { "opacity": 0, "transform": "translateX(24px)" },
+        "to":   { "opacity": 1, "transform": "translateX(0)" },
+        "_duration": "400ms",
+        "_easing": "out"
+      },
+
+      "scaleIn": {
+        "$type": "keyframe",
+        "from": { "opacity": 0, "transform": "scale(0.95)" },
+        "to":   { "opacity": 1, "transform": "scale(1)" },
+        "_duration": "300ms",
+        "_easing": "spring"
+      },
+
+      "pulse": {
+        "$type": "keyframe",
+        "0%":   { "opacity": 1 },
+        "50%":  { "opacity": 0.5 },
+        "100%": { "opacity": 1 },
+        "_duration": "2000ms",
+        "_easing": "in-out",
+        "_iteration": "infinite"
+      },
+
+      "skeleton": {
+        "$type": "keyframe",
+        "0%":   { "backgroundPosition": "200% 0" },
+        "100%": { "backgroundPosition": "-200% 0" },
+        "_duration": "2000ms",
+        "_easing": "linear",
+        "_iteration": "infinite"
+      },
+
+      "spin": {
+        "$type": "keyframe",
+        "from": { "transform": "rotate(0deg)" },
+        "to":   { "transform": "rotate(360deg)" },
+        "_duration": "800ms",
+        "_easing": "linear",
+        "_iteration": "infinite"
+      }
+    },
+
+    "guidelines": {
+      "principles": [
+        "Motion should feel organic and unhurried — never jarring or mechanical.",
+        "Every animation must have clear purpose: guide attention, provide feedback, or establish hierarchy.",
+        "Use slower durations for larger movements, faster for micro-interactions.",
+        "Prefer transform and opacity animations for 60fps performance.",
+        "Entrance animations should decelerate (ease-out). Exit animations should accelerate (ease-in).",
+        "Stagger sequential items with 50-80ms delay between each.",
+        "Respect prefers-reduced-motion: disable all non-essential animation."
+      ],
+
+      "reducedMotion": {
+        "_description": "When prefers-reduced-motion is active:",
+        "disableAll": true,
+        "keepEssential": [
+          "Loading spinners (reduce to opacity pulse)",
+          "Focus indicators (instant, no transition)",
+          "Error shake (replace with color highlight)"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "meta": {
+    "name": "CarbonS Design System — Typography Tokens",
+    "version": "1.0.0",
+    "description": "9-level type scale with luxury-organic font pairing. Calibrated for management dashboard readability."
+  },
+
+  "typography": {
+    "fontFamily": {
+      "_description": "Font stack: 'Instrument Serif' for display elegance, 'Inter' for interface clarity, 'JetBrains Mono' for data.",
+      "display":  { "$value": "'Instrument Serif', 'Georgia', 'Times New Roman', serif", "$type": "fontFamily", "_description": "Headlines and hero text — refined serif with warmth" },
+      "heading":  { "$value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", "$type": "fontFamily", "_description": "Section headings — clean geometric sans" },
+      "body":     { "$value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", "$type": "fontFamily", "_description": "Body text — optimized for long-form reading" },
+      "mono":     { "$value": "'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Mono', monospace", "$type": "fontFamily", "_description": "Code, data tables, numerical values" },
+      "ui":       { "$value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", "$type": "fontFamily", "_description": "Buttons, labels, navigation" }
+    },
+
+    "fontWeight": {
+      "light":    { "$value": 300, "$type": "fontWeight" },
+      "regular":  { "$value": 400, "$type": "fontWeight" },
+      "medium":   { "$value": 500, "$type": "fontWeight" },
+      "semibold": { "$value": 600, "$type": "fontWeight" },
+      "bold":     { "$value": 700, "$type": "fontWeight" }
+    },
+
+    "scale": {
+      "_description": "9-level modular scale based on 1.200 minor third ratio. Sizes in rem (base 16px).",
+
+      "display-2xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "4.5rem",
+          "lineHeight": "1.08",
+          "letterSpacing": "-0.03em"
+        },
+        "_description": "72px — Hero headlines, landing page titles",
+        "_usage": "One per page maximum. Reserved for primary marketing messages."
+      },
+
+      "display-xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "3.75rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "-0.025em"
+        },
+        "_description": "60px — Section heroes, major page titles",
+        "_usage": "Page-level titles. Pair with body-lg for subtitle."
+      },
+
+      "display-lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "3rem",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.02em"
+        },
+        "_description": "48px — Feature section headings",
+        "_usage": "Major section headers. Dashboard welcome messages."
+      },
+
+      "heading-xl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.heading}",
+          "fontWeight": "{typography.fontWeight.semibold}",
+          "fontSize": "2.25rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "-0.015em"
+        },
+        "_description": "36px — Card group headings, modal titles",
+        "_usage": "Secondary headings within content areas."
+      },
+
+      "heading-lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.heading}",
+          "fontWeight": "{typography.fontWeight.semibold}",
+          "fontSize": "1.875rem",
+          "lineHeight": "1.25",
+          "letterSpacing": "-0.01em"
+        },
+        "_description": "30px — Dashboard section titles, sidebar headers",
+        "_usage": "Tertiary headings. Widget titles."
+      },
+
+      "heading-md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.heading}",
+          "fontWeight": "{typography.fontWeight.semibold}",
+          "fontSize": "1.5rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "-0.008em"
+        },
+        "_description": "24px — Card titles, dialog headings",
+        "_usage": "Subsection headings. Card headers."
+      },
+
+      "body-lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "1.125rem",
+          "lineHeight": "1.6",
+          "letterSpacing": "0"
+        },
+        "_description": "18px — Lead paragraphs, subtitles",
+        "_usage": "Introductory text. Feature descriptions."
+      },
+
+      "body-md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "1rem",
+          "lineHeight": "1.6",
+          "letterSpacing": "0"
+        },
+        "_description": "16px — Standard body text, form labels",
+        "_usage": "Default text size. All body content."
+      },
+
+      "body-sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "0.875rem",
+          "lineHeight": "1.55",
+          "letterSpacing": "0.005em"
+        },
+        "_description": "14px — Secondary text, table content, metadata",
+        "_usage": "Supporting content. Table cells. Timestamps."
+      }
+    },
+
+    "utility": {
+      "_description": "Specialized type styles for UI elements.",
+
+      "label-lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.ui}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "1rem",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.005em"
+        },
+        "_usage": "Form labels, navigation items"
+      },
+
+      "label-md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.ui}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "0.875rem",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.01em"
+        },
+        "_usage": "Button text, tab labels, chip text"
+      },
+
+      "label-sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.ui}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "0.75rem",
+          "lineHeight": "1.35",
+          "letterSpacing": "0.02em"
+        },
+        "_usage": "Badges, tags, captions, helper text"
+      },
+
+      "overline": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.ui}",
+          "fontWeight": "{typography.fontWeight.semibold}",
+          "fontSize": "0.6875rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "0.08em",
+          "textTransform": "uppercase"
+        },
+        "_usage": "Section labels, category tags, eyebrow text"
+      },
+
+      "caption": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "0.75rem",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.01em"
+        },
+        "_usage": "Fine print, timestamps, supplementary info"
+      },
+
+      "code": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.mono}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "0.8125rem",
+          "lineHeight": "1.6",
+          "letterSpacing": "0"
+        },
+        "_usage": "Code blocks, API references, data values"
+      },
+
+      "data": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.mono}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "2rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "-0.02em"
+        },
+        "_usage": "Dashboard KPIs, large numerical values"
+      }
+    }
+  }
+}
