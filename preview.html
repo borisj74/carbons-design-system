@@ -1013,6 +1013,133 @@
     .ease-spring .ball  { transition: left 600ms var(--cs-ease-spring); }
     .ease-organic .ball { transition: left 600ms var(--cs-ease-organic); }
 
+    /* ── Download / CTA Section ──────────────────────────────────── */
+    .cta-bar {
+      display: flex;
+      gap: var(--cs-space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--cs-space-8);
+    }
+
+    .cta-bar .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .downloads-section {
+      padding-top: var(--cs-space-12);
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--cs-space-6);
+    }
+
+    .download-card {
+      background: var(--cs-bg-secondary);
+      border: 1px solid var(--cs-border-primary);
+      border-radius: var(--cs-radius-xl);
+      padding: var(--cs-space-6);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--cs-duration-normal) var(--cs-ease-default);
+    }
+
+    .download-card:hover {
+      box-shadow: var(--cs-shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--cs-border-secondary);
+    }
+
+    .download-card .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--cs-radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: var(--cs-space-4);
+    }
+
+    .download-card .card-icon.figma-icon { background: var(--cs-bg-brand-subtle); color: var(--cs-fg-brand); }
+    .download-card .card-icon.css-icon   { background: var(--cs-sage-100); color: var(--cs-sage-700); }
+    .download-card .card-icon.json-icon  { background: var(--cs-clay-100); color: var(--cs-clay-700); }
+    .download-card .card-icon.zip-icon   { background: var(--cs-info-100); color: var(--cs-info-700); }
+    .download-card .card-icon.github-icon { background: var(--cs-bg-tertiary); color: var(--cs-fg-secondary); }
+
+    .download-card h4 {
+      font-size: var(--cs-text-heading-md);
+      font-weight: var(--cs-weight-semibold);
+      margin-bottom: var(--cs-space-2);
+      color: var(--cs-fg-primary);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .download-card p {
+      font-size: var(--cs-text-body-sm);
+      color: var(--cs-fg-secondary);
+      margin-bottom: var(--cs-space-5);
+      flex: 1;
+    }
+
+    .download-card .file-meta {
+      font-family: var(--cs-font-mono);
+      font-size: 11px;
+      color: var(--cs-fg-tertiary);
+      margin-bottom: var(--cs-space-3);
+    }
+
+    .download-card .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cs-space-4);
+      margin-top: var(--cs-space-6);
+      max-width: 640px;
+    }
+
+    .step {
+      display: flex;
+      gap: var(--cs-space-4);
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--cs-radius-full);
+      background: var(--cs-bg-brand-subtle);
+      color: var(--cs-fg-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--cs-text-label-sm);
+      font-weight: var(--cs-weight-semibold);
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      font-size: var(--cs-text-body-sm);
+      color: var(--cs-fg-secondary);
+      padding-top: 3px;
+    }
+
+    .step-content strong { color: var(--cs-fg-primary); font-weight: var(--cs-weight-semibold); }
+
+    .step-content code {
+      font-family: var(--cs-font-mono);
+      font-size: 12px;
+      background: var(--cs-bg-tertiary);
+      padding: 1px 6px;
+      border-radius: var(--cs-radius-sm);
+      word-break: break-all;
+    }
+
     /* ── Responsive ──────────────────────────────────────────────── */
     @media (max-width: 1024px) {
       .sidebar-nav { transform: translateX(-100%); }
@@ -1040,6 +1167,8 @@
         <span>Design System v1.0</span>
       </div>
       <ul>
+        <li class="nav-section">Get Started</li>
+        <li><a href="#downloads">Downloads</a></li>
         <li class="nav-section">Foundations</li>
         <li><a href="#colors" class="active">Colors</a></li>
         <li><a href="#typography">Typography</a></li>
@@ -1084,6 +1213,141 @@
             <span class="attr-badge">Luxury</span>
             <span class="attr-badge">Organic</span>
             <span class="attr-badge">Inviting</span>
+          </div>
+          <div class="cta-bar">
+            <button class="btn btn-lg btn-primary" onclick="downloadTokensStudio()" aria-label="Download Figma Tokens">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Import to Figma
+            </button>
+            <button class="btn btn-lg btn-secondary" onclick="downloadCSS()" aria-label="Download CSS Variables">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CSS
+            </button>
+            <a href="#downloads" class="btn btn-lg btn-ghost">View all downloads &darr;</a>
+          </div>
+        </section>
+
+        <!-- ═══ DOWNLOADS ═══ -->
+        <section id="downloads" class="downloads-section">
+          <div class="section-header">
+            <h2>Downloads</h2>
+            <p>Everything you need to implement CarbonS in Figma, code, or any design tool.</p>
+          </div>
+
+          <div class="download-grid">
+            <!-- Figma Tokens Studio -->
+            <div class="download-card">
+              <div class="card-icon figma-icon">
+                <svg width="24" height="24" viewBox="0 0 38 57" fill="currentColor"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+              </div>
+              <h4>Figma Tokens</h4>
+              <p>Tokens Studio JSON with all colors, typography, spacing, shadows, and semantic aliases. Import directly into Figma using the Tokens Studio plugin.</p>
+              <div class="file-meta">tokens-studio.json &middot; ~12 KB</div>
+              <button class="btn btn-md btn-primary" onclick="downloadTokensStudio()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Figma
+              </button>
+            </div>
+
+            <!-- CSS Variables -->
+            <div class="download-card">
+              <div class="card-icon css-icon">&lt;/&gt;</div>
+              <h4>CSS Variables</h4>
+              <p>200+ custom properties with light/dark mode, keyframe animations, and reduced motion support. Drop into any project.</p>
+              <div class="file-meta">tokens.css &middot; ~14 KB</div>
+              <button class="btn btn-md btn-sage" onclick="downloadCSS()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CSS
+              </button>
+            </div>
+
+            <!-- Design Tokens JSON -->
+            <div class="download-card">
+              <div class="card-icon json-icon">{ }</div>
+              <h4>Design Tokens</h4>
+              <p>Full W3C DTCG-format JSON tokens for colors, typography, spacing, and animation. For Style Dictionary, Theo, or custom pipelines.</p>
+              <div class="file-meta">4 JSON files &middot; ~44 KB</div>
+              <button class="btn btn-md btn-secondary" onclick="downloadAllTokens()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Tokens
+              </button>
+            </div>
+
+            <!-- Component Specs -->
+            <div class="download-card">
+              <div class="card-icon zip-icon">&#9783;</div>
+              <h4>Component Specs</h4>
+              <p>30 component specifications with variants, states, sizes, accessibility requirements, and Figma component property definitions.</p>
+              <div class="file-meta">component-specs.json &middot; ~32 KB</div>
+              <button class="btn btn-md btn-secondary" onclick="downloadFile('components/component-specs.json', 'carbons-component-specs.json')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Specs
+              </button>
+            </div>
+
+            <!-- GitHub -->
+            <div class="download-card">
+              <div class="card-icon github-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <h4>GitHub Repository</h4>
+              <p>Full source with all tokens, CSS, component specs, Figma guide, accessibility docs, and this preview page.</p>
+              <div class="file-meta">borisj74/carbons-design-system</div>
+              <a href="https://github.com/borisj74/carbons-design-system" target="_blank" rel="noopener" class="btn btn-md btn-secondary">
+                View on GitHub &nearr;
+              </a>
+            </div>
+
+            <!-- Figma Guide -->
+            <div class="download-card">
+              <div class="card-icon figma-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h4>Figma Build Guide</h4>
+              <p>Detailed component property definitions, variant structures, auto-layout specs, and naming conventions for building in Figma.</p>
+              <div class="file-meta">figma-component-guide.json &middot; ~16 KB</div>
+              <button class="btn btn-md btn-secondary" onclick="downloadFile('docs/figma-component-guide.json', 'carbons-figma-guide.json')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Guide
+              </button>
+            </div>
+          </div>
+
+          <!-- How to import to Figma -->
+          <div class="subsection" style="margin-top: var(--cs-space-10)">
+            <h3>How to Import into Figma</h3>
+            <p>The fastest way to get CarbonS into Figma is through the Tokens Studio plugin. Here's the complete workflow:</p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content"><strong>Install Tokens Studio</strong> — Search "Tokens Studio for Figma" in Figma's Community plugins (1M+ installs, free tier available).</div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content"><strong>Download the tokens file</strong> — Click "Download for Figma" above to save <code>tokens-studio.json</code> to your computer.</div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content"><strong>Open the plugin</strong> — In your Figma file, run Tokens Studio. Go to the <strong>Settings</strong> tab (gear icon).</div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content"><strong>Load tokens</strong> — Under "Token storage", choose <strong>Local document</strong>. Then use the import icon and select the downloaded JSON file.</div>
+              </div>
+              <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-content"><strong>Apply to Figma</strong> — Check the token sets you want (Primitives, Semantic/Light, Typography, etc.) and click <strong>"Create variables"</strong> or <strong>"Create styles"</strong>. Done.</div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--cs-space-6); padding: var(--cs-space-4); background: var(--cs-bg-brand-subtle); border-radius: var(--cs-radius-lg); max-width: 640px">
+              <div style="font-size: var(--cs-text-body-sm); color: var(--cs-fg-brand)">
+                <strong>Pro tip:</strong> For a GitHub-synced workflow, point Tokens Studio to the raw URL:
+                <code style="display:block;margin-top:var(--cs-space-1);color:var(--cs-fg-secondary)">https://raw.githubusercontent.com/borisj74/carbons-design-system/main/figma/tokens-studio.json</code>
+                This keeps your Figma variables in sync with your codebase automatically.
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1754,6 +2018,40 @@
         document.getElementById('sidebar').classList.remove('open');
       });
     });
+
+    // ── Download Functions ──────────────────────────────────────────
+
+    function downloadFile(path, filename) {
+      const a = document.createElement('a');
+      a.href = path;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function downloadTokensStudio() {
+      downloadFile('figma/tokens-studio.json', 'carbons-tokens-studio.json');
+    }
+
+    function downloadCSS() {
+      downloadFile('css/tokens.css', 'carbons-tokens.css');
+    }
+
+    async function downloadAllTokens() {
+      // Fetch all token files and bundle them as individual downloads
+      const files = [
+        { path: 'tokens/colors.json',     name: 'carbons-colors.json' },
+        { path: 'tokens/typography.json',  name: 'carbons-typography.json' },
+        { path: 'tokens/spacing.json',     name: 'carbons-spacing.json' },
+        { path: 'tokens/animation.json',   name: 'carbons-animation.json' },
+      ];
+
+      for (const file of files) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        downloadFile(file.path, file.name);
+      }
+    }
   </script>
 </body>
 </html>
